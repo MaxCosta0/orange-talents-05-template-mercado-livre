@@ -1,16 +1,17 @@
 package br.com.zupacademy.maxley.mercadolivre.controller.dto;
 
+import br.com.zupacademy.maxley.mercadolivre.config.ValorUnico;
 import br.com.zupacademy.maxley.mercadolivre.model.Usuario;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class NovoUsuarioRequest {
 
-    @NotBlank @Email
+    @NotBlank @Email @ValorUnico(domainClass = Usuario.class, fieldName = "login")
     private String login;
-    @NotBlank @Min(6)
+    @NotBlank @Size(min = 6)
     private String senha;
 
     @Deprecated
