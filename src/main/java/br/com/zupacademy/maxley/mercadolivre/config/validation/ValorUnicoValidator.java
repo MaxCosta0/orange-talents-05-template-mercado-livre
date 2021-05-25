@@ -1,6 +1,6 @@
 package br.com.zupacademy.maxley.mercadolivre.config.validation;
 
-import br.com.zupacademy.maxley.mercadolivre.config.ValorUnico;
+import br.com.zupacademy.maxley.mercadolivre.config.annotation.ValorUnico;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 

@@ -25,16 +25,10 @@ public class ErroValidationHandler {
         List<ErroRequest> errosRequest = new ArrayList<>();
         List<FieldError> errs = exception.getBindingResult().getFieldErrors();
 
-        System.out.println("Ta entrando no ExceptionHandler");
-
         for(FieldError err: errs){
             String mensagem = messageSource.getMessage(err, LocaleContextHolder.getLocale());
             ErroRequest erro = new ErroRequest(err.getField(), mensagem);
             errosRequest.add(erro);
-        }
-
-        for(ErroRequest erro: errosRequest){
-            System.out.println(erro);
         }
 
         return errosRequest;
