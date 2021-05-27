@@ -2,6 +2,8 @@ package br.com.zupacademy.maxley.mercadolivre.controller.dto;
 
 import br.com.zupacademy.maxley.mercadolivre.config.annotation.ValorUnico;
 import br.com.zupacademy.maxley.mercadolivre.model.Usuario;
+import org.apache.catalina.User;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
