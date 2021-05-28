@@ -9,6 +9,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.persistence.CascadeType;
+import javax.persistence.OneToMany;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -31,8 +33,6 @@ public class AutenticacaoViaTolkenFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         String token = recuperarToken(httpServletRequest);
         boolean valido = validaToken.validar(token);
-
-        System.out.println(valido);
 
         if(valido){
             autenticarUsuario(token);
