@@ -102,4 +102,15 @@ public class Usuario implements UserDetails {
     public Long getId() {
         return this.id;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", instanteCadastro=" + instanteCadastro +
+                ", login='" + login + '\'' +
+                ", senha='" + senha + '\'' +
+                ", perfis=" + perfis +
+                '}';
+    }
 }

@@ -2,8 +2,10 @@ package br.com.zupacademy.maxley.mercadolivre.controller;
 
 import br.com.zupacademy.maxley.mercadolivre.config.validation.ProibeCaracteristicaComNomeIgualValidator;
 import br.com.zupacademy.maxley.mercadolivre.controller.dto.NovaImagenRequest;
+import br.com.zupacademy.maxley.mercadolivre.controller.dto.NovaOpiniaoRequest;
 import br.com.zupacademy.maxley.mercadolivre.controller.dto.NovoProdutoRequest;
 import br.com.zupacademy.maxley.mercadolivre.controller.dto.UploaderFake;
+import br.com.zupacademy.maxley.mercadolivre.model.OpiniaoProduto;
 import br.com.zupacademy.maxley.mercadolivre.model.Produto;
 import br.com.zupacademy.maxley.mercadolivre.model.Usuario;
 import br.com.zupacademy.maxley.mercadolivre.repository.UsuarioRepository;
@@ -69,5 +71,15 @@ public class ProdutosController {
         produto.associaImagens(links);
         entityManager.merge(produto);
         return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(value = "/{id}/opinioes")
+    @Transactional
+    public String adicionaOpiniao(@PathVariable("id") Long id, @RequestBody @Valid NovaOpiniaoRequest request){
+        Usuario consumidor = usuarioRepository.findByLogin("maxley@email.com").get();
+        Produto produto = entityManager.find(Produto.class, id);
+        OpiniaoProduto opiniao = request.toModel(entityManager, produto, consumidor);
+        entityManager.persist(opiniao);
+        return opiniao.toString();
     }
 }
