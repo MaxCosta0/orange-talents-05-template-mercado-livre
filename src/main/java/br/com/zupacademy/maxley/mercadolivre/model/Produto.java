@@ -14,6 +14,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 public class Produto {
@@ -22,19 +23,24 @@ public class Produto {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotBlank
-    private final String nome;
+    private String nome;
     @Positive @NotNull
-    private final BigDecimal valor;
+    private BigDecimal valor;
     @Positive @NotNull
-    private final Integer quantidadeDisponivel;
+    private Integer quantidadeDisponivel;
     @NotBlank @Size(max = 1000)
-    private final String descricao;
+    private String descricao;
     @NotNull @Valid @ManyToOne
     private Categoria categoria;
     @NotNull @Valid @ManyToOne
     private Usuario dono;
     @OneToMany(mappedBy = "produto", cascade = CascadeType.PERSIST)
     private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
+    @OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+    private Set<ImagemProduto> imagens = new HashSet<>();
+
+    @Deprecated
+    public Produto(){}
 
     public Produto(@NotBlank String nome, @Positive @NotNull BigDecimal valor,
                    @Positive @NotNull Integer quantidadeDisponivel,
@@ -74,6 +80,15 @@ public class Produto {
         return Objects.hash(nome);
     }
 
+    public void associaImagens(Set<String> links) {
+        this.imagens.addAll(links.stream().map(link -> new ImagemProduto(this, link))
+                .collect(Collectors.toSet()));
+    }
+
+    public boolean pertecenceAoUsuario(Usuario usuario) {
+        return this.dono.equals(usuario);
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
@@ -85,6 +100,7 @@ public class Produto {
                 ", categoria=" + categoria +
                 ", dono=" + dono +
                 ", caracteristicas=" + caracteristicas +
+                ", imagens=" + imagens +
                 '}';
     }
 }

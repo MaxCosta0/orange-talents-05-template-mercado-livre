@@ -19,9 +19,7 @@ public class ProibeCaracteristicaComNomeIgualValidator implements Validator {
         }
 
         NovoProdutoRequest request = (NovoProdutoRequest) obj;
-
         if(request.temCaracteristicasIguais()){
-            System.out.println("Ta entrando dentro do if do validator");
             errors.rejectValue("caracteristicas", null, "Nao é permitido caracteristicas com nomes iguais");
         }
     }

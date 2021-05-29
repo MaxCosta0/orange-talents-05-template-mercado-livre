@@ -13,29 +13,32 @@ import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfi
 import org.springframework.data.web.config.EnableSpringDataWebSupport;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class MercadoLivreApplication implements CommandLineRunner {
 
-	@Autowired
-	public UsuarioRepository usuarioRepository;
-
-	@Autowired
-	public CategoriaRepository categoriaRepository;
+	@PersistenceContext
+	private EntityManager entityManager;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MercadoLivreApplication.class, args);
 	}
 
 	@Override
+	@Transactional
 	public void run(String... args) throws Exception {
 		SenhaLimpa senhaLimpa = new SenhaLimpa("123456");
-		Usuario usuario = new Usuario("maxley@email.com", senhaLimpa);
-		usuarioRepository.save(usuario);
+		Usuario usuario1 = new Usuario("maxley@email.com", senhaLimpa);
+		Usuario usuario2 = new Usuario("maxley2@email.com", senhaLimpa);
+		entityManager.persist(usuario1);
+		entityManager.persist(usuario2);
 
-		Categoria categoria = new Categoria("Tecnologia");
-		categoriaRepository.save(categoria);
+		Categoria categoria1 = new Categoria("Tecnologia");
+		entityManager.persist(categoria1);
 	}
 }

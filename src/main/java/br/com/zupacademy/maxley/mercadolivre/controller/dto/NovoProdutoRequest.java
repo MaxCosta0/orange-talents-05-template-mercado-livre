@@ -7,6 +7,8 @@ import br.com.zupacademy.maxley.mercadolivre.model.Usuario;
 import br.com.zupacademy.maxley.mercadolivre.repository.CategoriaRepository;
 import io.jsonwebtoken.lang.Assert;
 
+import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -55,10 +57,11 @@ public class NovoProdutoRequest {
         return caracteristicas;
    }
 
-    public Produto toModel(CategoriaRepository categoriaRepository, Usuario dono){
-        Optional<Categoria> categoria = categoriaRepository.findById(categoriaId);
-        Assert.state(categoria.isPresent(), "[Bug] A categoria com id = "+categoriaId+" nao existe no banco.");
-        return new Produto(nome, valor, quantidadeDisponivel, descricao, categoria.get(), dono, caracteristicas);
+    public Produto toModel(EntityManager entityManager, Usuario dono){
+        //Optional<Categoria> categoria = categoriaRepository.findById(categoriaId);
+        Categoria categoria = entityManager.find(Categoria.class, categoriaId);
+        Assert.state(categoria != null, "[Bug] A categoria com id = "+categoriaId+" nao existe no banco.");
+        return new Produto(nome, valor, quantidadeDisponivel, descricao, categoria, dono, caracteristicas);
     }
 
     @Override
