@@ -34,7 +34,6 @@ public class AutenticacoesController {
         try{
             Authentication authentication = authenticationManager.authenticate(dadosLogin);
             String token = geradorToken.geraToken(authentication);
-            //System.out.println(token);
             return ResponseEntity.ok(new TokenResponse(token, "Bearer"));
         }catch (AuthenticationException ex){
             System.out.println(ex.getMessage());

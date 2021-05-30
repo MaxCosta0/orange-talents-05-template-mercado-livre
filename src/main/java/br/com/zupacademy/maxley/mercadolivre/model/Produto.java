@@ -89,6 +89,10 @@ public class Produto {
         return this.dono.equals(usuario);
     }
 
+    public String getEmailDono() {
+        return this.dono.getUsername();
+    }
+
     @Override
     public String toString() {
         return "Produto{" +
@@ -103,4 +107,5 @@ public class Produto {
                 ", imagens=" + imagens +
                 '}';
     }
+
 }

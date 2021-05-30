@@ -75,11 +75,11 @@ public class ProdutosController {
 
     @PostMapping(value = "/{id}/opinioes")
     @Transactional
-    public String adicionaOpiniao(@PathVariable("id") Long id, @RequestBody @Valid NovaOpiniaoRequest request){
+    public ResponseEntity<?> adicionaOpiniao(@PathVariable("id") Long id, @RequestBody @Valid NovaOpiniaoRequest request){
         Usuario consumidor = usuarioRepository.findByLogin("maxley@email.com").get();
         Produto produto = entityManager.find(Produto.class, id);
         OpiniaoProduto opiniao = request.toModel(entityManager, produto, consumidor);
         entityManager.persist(opiniao);
-        return opiniao.toString();
+        return ResponseEntity.ok().build();
     }
 }

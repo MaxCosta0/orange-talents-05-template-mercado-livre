@@ -25,15 +25,6 @@ public class NovaOpiniaoRequest {
         this.descricao = descricao;
     }
 
-    @Override
-    public String toString() {
-        return "NovaOpiniaoRequest{" +
-                "nota=" + nota +
-                ", titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
-                '}';
-    }
-
     public OpiniaoProduto toModel(EntityManager entityManager, Produto produto, Usuario consumidor) {
         Assert.state(produto != null, "[BUG] Este produto ainda nao esta cadastrado.");
         Assert.state(consumidor != null, "[BUG] Este usuario ainda nao esta cadastrado.");
