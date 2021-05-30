@@ -74,6 +74,10 @@ public class Usuario implements UserDetails {
         return true;
     }
 
+    public Long getId() {
+        return this.id;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -97,10 +101,6 @@ public class Usuario implements UserDetails {
         } else if (!id.equals(other.id))
             return false;
         return true;
-    }
-
-    public Long getId() {
-        return this.id;
     }
 
     @Override

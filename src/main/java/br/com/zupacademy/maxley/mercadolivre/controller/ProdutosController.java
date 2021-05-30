@@ -67,7 +67,9 @@ public class ProdutosController {
         if(!produto.pertecenceAoUsuario(usuario)){
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         }
-
+        System.out.println("TESTANDO ..............................................................");
+        links.forEach(link -> System.out.println(link));
+        System.out.println(links);
         produto.associaImagens(links);
         entityManager.merge(produto);
         return ResponseEntity.ok().build();

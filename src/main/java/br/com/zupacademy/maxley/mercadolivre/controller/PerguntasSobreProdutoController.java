@@ -6,7 +6,6 @@ import br.com.zupacademy.maxley.mercadolivre.model.PerguntaProduto;
 import br.com.zupacademy.maxley.mercadolivre.model.Produto;
 import br.com.zupacademy.maxley.mercadolivre.model.Usuario;
 import br.com.zupacademy.maxley.mercadolivre.repository.UsuarioRepository;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.swing.text.html.parser.Entity;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
