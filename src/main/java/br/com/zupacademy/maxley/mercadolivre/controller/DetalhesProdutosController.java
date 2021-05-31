@@ -1,6 +1,6 @@
 package br.com.zupacademy.maxley.mercadolivre.controller;
 
-import br.com.zupacademy.maxley.mercadolivre.controller.dto.DetalheCaracteristicaProduto;
+
 import br.com.zupacademy.maxley.mercadolivre.controller.dto.DetalhesProdutoResponse;
 import br.com.zupacademy.maxley.mercadolivre.model.Produto;
 import org.springframework.http.ResponseEntity;

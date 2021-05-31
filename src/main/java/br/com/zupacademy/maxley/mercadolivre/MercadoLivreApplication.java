@@ -56,7 +56,7 @@ public class MercadoLivreApplication implements CommandLineRunner {
 		caracteristicas.add(caracteristica2);
 		caracteristicas.add(caracteristica3);
 
-		Produto produto = new Produto("teclado", new BigDecimal("310"), 1, "teclado mecanico", categoria1, usuario1, caracteristicas);
+		Produto produto = new Produto("teclado", new BigDecimal("310"), 10, "teclado mecanico", categoria1, usuario1, caracteristicas);
 		entityManager.persist(produto);
 	}
 }
