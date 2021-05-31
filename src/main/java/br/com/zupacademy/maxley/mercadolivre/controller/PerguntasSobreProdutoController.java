@@ -37,7 +37,7 @@ public class PerguntasSobreProdutoController {
         Usuario usuario = usuarioRepository.findByLogin("maxley2@email.com").get();
         PerguntaProduto pergunta = request.toModel(manager, produto, usuario);
         manager.persist(pergunta);
-        centralEmail.enviarEmail(pergunta);
+        centralEmail.enviarEmailPergunta(pergunta);
         return ResponseEntity.ok().build();
     }
 }
